@@ -13,7 +13,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+     <body style={{
+  background: "var(--bg)",
+  color: "var(--text)",
+  fontFamily: "var(--font-dm)",
+  minHeight: "100vh",
+}}>
+  {children}
+</body>
     </html>
   );
 }

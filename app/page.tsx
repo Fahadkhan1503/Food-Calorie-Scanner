@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ImageUploader from "./components/ImageUploader";
 import ResultCard from "./components/ResultCard";
+import ThemeToggle from "./lib/ThemeToggle";
 
 export default function Home() {
   const [result, setResult] = useState<any>(null);
@@ -70,17 +71,20 @@ const handleImageSelect = async (file: File) => {
 
         {/* Header */}
         <header style={{ padding: "48px 0 32px", animation: "fadeUp 0.5s ease both" }}>
-          <div className="flex items-center gap-2 mb-3">
-            <span style={{ fontSize: "24px", color: "var(--accent)" }}>◎</span>
-            <span style={{
-              fontFamily: "var(--font-syne)",
-              fontSize: "22px",
-              fontWeight: "800",
-              color: "var(--text)",
-              letterSpacing: "-0.5px",
-            }}>
-              CalorieLens
-            </span>
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <span style={{ fontSize: "24px", color: "var(--accent)" }}>◎</span>
+              <span style={{
+                fontFamily: "var(--font-syne)",
+                fontSize: "22px",
+                fontWeight: "800",
+                color: "var(--text)",
+                letterSpacing: "-0.5px",
+              }}>
+                CalorieLens
+              </span>
+            </div>
+            <ThemeToggle />
           </div>
           <p style={{ fontSize: "14px", color: "var(--text-muted)", lineHeight: "1.5" }}>
             Scan any food. Get instant nutrition breakdown.

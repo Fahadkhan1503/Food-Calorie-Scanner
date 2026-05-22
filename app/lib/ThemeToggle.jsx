@@ -1,11 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
+import { theme } from "./theme";
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    const colors = dark ? theme.colors.dark : theme.colors.light;
+    const root = document.documentElement;
+    root.setAttribute("data-theme", dark ? "dark" : "light");
+    Object.entries(colors).forEach(([key, value]) => {
+      root.style.setProperty(
+        `--${key.replace(/([A-Z])/g, "-$1").toLowerCase()}`,
+        value
+      );
+    });
   }, [dark]);
 
   return (

@@ -14,7 +14,18 @@
   --font-dm: "DM Sans", sans-serif;
 }
 
-* {
+[data-theme="light"] {
+  --bg: #f5f5f0;
+  --surface: #ffffff;
+  --surface2: #f0f0eb;
+  --border: #e0e0d8;
+  --accent: #5a9e00;
+  --text: #111111;
+  --text-muted: #666666;
+  --text-dim: #999999;
+}
+
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -25,7 +36,7 @@ body {
   color: var(--text);
   font-family: var(--font-dm);
   min-height: 100vh;
-}
+} */
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
