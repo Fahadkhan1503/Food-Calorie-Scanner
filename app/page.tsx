@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import ImageUploader from "./components/ImageUploader";
 import ResultCard from "./components/ResultCard";
 import ThemeToggle from "./lib/ThemeToggle";
@@ -10,7 +11,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-const handleImageSelect = async (file: File) => {
+  const handleImageSelect = async (file: File) => {
     setResult(null);
     setError(null);
     setImageUrl(URL.createObjectURL(file));
@@ -19,19 +20,10 @@ const handleImageSelect = async (file: File) => {
     try {
       const formData = new FormData();
       formData.append("image", file);
-
-      const res = await fetch("/api/analyze", {
-        method: "POST",
-        body: formData,
-      });
-
+      const res = await fetch("/api/analyze", { method: "POST", body: formData });
       const data = await res.json();
-
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setResult(data);
-      }
+      if (data.error) setError(data.error);
+      else setResult(data);
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -46,124 +38,198 @@ const handleImageSelect = async (file: File) => {
   };
 
   return (
-    <main style={{ 
-      minHeight: "100vh",
-      paddingBottom: "40px",
-      background: "var(--bg)",
-      display: "flex",
-      flexDirection: "column",
-    }}>
+    <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
 
-      {/* Background glow - responsive */}
-      <div style={{
-        position: "fixed",
-        top: "-150px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: "clamp(400px, 90vw, 800px)",
-        height: "clamp(400px, 90vw, 800px)",
-        background: "radial-gradient(ellipse, rgba(200, 241, 53, 0.06) 0%, transparent 70%)",
-        pointerEvents: "none",
-        zIndex: 0,
-      }} />
-
-      {/* Main Content Container */}
-      <div style={{
-        flex: 1,
+      {/* Navbar */}
+      <nav style={{
+        borderBottom: "1px solid var(--border)",
+        padding: "16px 32px",
         display: "flex",
-        flexDirection: "column",
-        position: "relative",
-        zIndex: 1,
-        width: "100%",
+        alignItems: "center",
+        justifyContent: "space-between",
+        position: "sticky",
+        top: 0,
+        background: "var(--bg)",
+        zIndex: 10,
       }}>
-        {/* Header with responsive padding */}
-        <header style={{ 
-          padding: "clamp(32px, 8vw, 64px) clamp(16px, 5vw, 48px) clamp(24px, 5vw, 40px)",
-          animation: "fadeUp 0.5s ease both",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
-        }}>
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <span style={{ fontSize: "clamp(20px, 5vw, 28px)", color: "var(--accent)" }}>◎</span>
-              <span style={{
-                fontFamily: "var(--font-syne)",
-                fontSize: "clamp(18px, 5vw, 26px)",
-                fontWeight: "800",
-                color: "var(--text)",
-                letterSpacing: "-0.5px",
-              }}>
-                CalorieLens
-              </span>
-            </div>
-            <ThemeToggle />
-          </div>
-          <p style={{ 
-            fontSize: "clamp(13px, 3vw, 15px)", 
-            color: "var(--text-muted)", 
-            lineHeight: "1.6",
-            marginTop: "8px",
-            maxWidth: "400px",
-          }}>
-            Scan any food. Get instant nutrition breakdown.
-          </p>
-        </header>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <span style={{ fontSize: "20px", color: "var(--accent)" }}>◎</span>
+          <span style={{
+            fontFamily: "var(--font-syne)",
+            fontSize: "18px",
+            fontWeight: "800",
+            color: "var(--text)",
+            letterSpacing: "-0.5px",
+          }}>CalorieLens</span>
+        </div>
+        <ThemeToggle />
+      </nav>
 
-        {/* Content Wrapper - optimized for all screen sizes */}
+      {/* Two column layout on desktop, single on mobile */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        minHeight: "calc(100vh - 57px)",
+      }}
+        className="max-md:grid-cols-1!"
+      >
+
+        {/* LEFT -- uploader + hero text */}
         <div style={{
-          flex: 1,
+          padding: "48px 40px",
+          borderRight: "1px solid var(--border)",
           display: "flex",
           flexDirection: "column",
-          padding: "0 clamp(16px, 5vw, 48px)",
-          maxWidth: "900px",
-          width: "100%",
-          margin: "0 auto",
-        }}>
-          {/* Uploader */}
-          <div style={{ 
-            marginBottom: "clamp(16px, 4vw, 28px)", 
-            animation: "fadeUp 0.5s ease both",
-            animationDelay: "0.1s",
+          gap: "28px",
+        }}
+          className="max-md:border-r-0 max-md:!padding-5"
+        >
+          {/* Badge
+          <div style={{
+            display: "inline-flex",
+            width: "fit-content",
+            fontSize: "11px",
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            color: "var(--accent)",
+            background: "rgba(200, 241, 53, 0.08)",
+            border: "1px solid rgba(200, 241, 53, 0.2)",
+            padding: "4px 12px",
+            borderRadius: "100px",
           }}>
-            <ImageUploader onImageSelect={handleImageSelect} isLoading={isLoading} />
+            Powered by Gemini Vision
+          </div> */}
+
+          {/* Headline */}
+          <div>
+            <h1 style={{
+              fontFamily: "var(--font-syne)",
+              fontSize: "clamp(28px, 3.5vw, 48px)",
+              fontWeight: "800",
+              color: "var(--text)",
+              lineHeight: "1.1",
+              letterSpacing: "-1px",
+              marginBottom: "12px",
+            }}>
+              Scan food.<br />
+              <span style={{ color: "var(--accent)" }}>Know what</span><br />
+              you eat.
+            </h1>
+            <p style={{
+              fontSize: "14px",
+              color: "var(--text-muted)",
+              lineHeight: "1.7",
+              maxWidth: "360px",
+            }}>
+              Upload or snap a photo of any food and get instant calorie and macro breakdown. Works with desi food too.
+            </p>
           </div>
+
+          {/* Uploader */}
+          <ImageUploader onImageSelect={handleImageSelect} isLoading={isLoading} />
 
           {/* Error */}
           {error && (
-            <div className="flex items-center gap-3" style={{
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
               background: "rgba(255, 68, 68, 0.08)",
               border: "1px solid rgba(255, 68, 68, 0.2)",
               borderRadius: "8px",
-              padding: "clamp(12px, 3vw, 16px) clamp(14px, 3vw, 20px)",
-              marginBottom: "clamp(16px, 4vw, 24px)",
+              padding: "14px 16px",
               color: "#ff6b6b",
-              fontSize: "clamp(12px, 2.5vw, 14px)",
-              animation: "fadeUp 0.5s ease both",
+              fontSize: "13px",
             }}>
-              <span style={{ flexShrink: 0 }}>⚠</span>
-              <p style={{ margin: 0 }}>{error}</p>
+              <span>⚠</span>
+              <p>{error}</p>
+            </div>
+          )}
+
+          {/* Stats */}
+          <div style={{
+            display: "flex",
+            gap: "32px",
+            paddingTop: "16px",
+            borderTop: "1px solid var(--border)",
+          }}>
+            {[
+              { value: "50+", label: "Cuisines" },
+              { value: "Free", label: "No signup" },
+              { value: "2s", label: "Avg response" },
+            ].map((s) => (
+              <div key={s.label}>
+                <div style={{
+                  fontFamily: "var(--font-syne)",
+                  fontSize: "18px",
+                  fontWeight: "700",
+                  color: "var(--text)",
+                }}>{s.value}</div>
+                <div style={{ fontSize: "11px", color: "var(--text-muted)" }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT -- result or hero image */}
+        <div style={{
+          padding: "48px 40px",
+          background: "var(--surface)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: "16px",
+        }}
+          className="max-md:!padding-5"
+        >
+          {/* No result -- show hero image */}
+          {!result && !isLoading && (
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              gap: "16px",
+              padding: "20px",
+            }}>
+              <Image
+                src="/heroimage.png"
+                alt="Food illustration"
+                width={400}
+                height={320}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "320px",
+                  borderRadius: "16px",
+                  opacity: 0.9,
+                }}
+              />
+              <p style={{
+                fontSize: "13px",
+                color: "var(--text-muted)",
+                textAlign: "center",
+              }}>
+                Your nutrition breakdown will appear here
+              </p>
             </div>
           )}
 
           {/* Result */}
           {result && (
-            <div style={{ 
-              marginBottom: "clamp(20px, 5vw, 32px)", 
-              animation: "fadeUp 0.5s ease both",
-              animationDelay: "0.1s",
-            }}>
+            <>
               <ResultCard result={result} imageUrl={imageUrl} />
               <button
                 onClick={handleReset}
                 style={{
-                  display: "block",
                   width: "100%",
-                  marginTop: "clamp(10px, 2vw, 16px)",
-                  padding: "clamp(12px, 3vw, 16px)",
+                  padding: "14px",
                   background: "transparent",
                   border: "1px solid var(--border)",
                   borderRadius: "8px",
                   color: "var(--text-muted)",
-                  fontSize: "clamp(13px, 2.5vw, 15px)",
+                  fontSize: "14px",
                   cursor: "pointer",
                   fontFamily: "var(--font-dm)",
                   transition: "all 0.2s ease",
@@ -179,24 +245,22 @@ const handleImageSelect = async (file: File) => {
               >
                 Scan another food
               </button>
-            </div>
+            </>
           )}
         </div>
       </div>
 
-      {/* Footer - sticky at bottom */}
+      {/* Footer */}
       <footer style={{
         textAlign: "center",
-        padding: "clamp(20px, 5vw, 32px) clamp(16px, 5vw, 48px)",
-        fontSize: "clamp(10px, 2vw, 12px)",
+        padding: "20px",
+        fontSize: "11px",
         color: "var(--text-dim)",
         letterSpacing: "0.04em",
-        borderTop: "1px solid rgba(255, 255, 255, 0.05)",
-        marginTop: "auto",
+        borderTop: "1px solid var(--border)",
       }}>
         Powered by Gemini Vision · Built with Next.js
       </footer>
-
     </main>
   );
 }
