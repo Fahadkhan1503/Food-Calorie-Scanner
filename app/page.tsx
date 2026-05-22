@@ -57,7 +57,7 @@ export default function Home() {
           <span style={{
             fontFamily: "var(--font-syne)",
             fontSize: "18px",
-            fontWeight: "800",
+            fontWeight: "700",
             color: "var(--text)",
             letterSpacing: "-0.5px",
           }}>CalorieLens</span>
