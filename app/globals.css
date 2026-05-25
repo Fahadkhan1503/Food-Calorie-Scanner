@@ -12,6 +12,11 @@
   --text-dim: #444444;
   --font-syne: "Syne", sans-serif;
   --font-dm: "DM Sans", sans-serif;
+  --btn-border: #222222;
+  --btn-text: #666666;
+  --reset-border: #858181;
+  --reset-text-color: #fb6e6e;
+  --btn-danger-hover-color: #ff1a1a;
 }
 
 [data-theme="light"] {
@@ -23,6 +28,11 @@
   --text: #111111;
   --text-muted: #666666;
   --text-dim: #999999;
+  --btn-border: #000000;
+  --btn-text: #999999;
+  --reset-text-color: #f57575;
+  --btn-danger-hover-color: #ff1a1a;
+  --reset-border: #3d3838;
 }
 
 /* * {

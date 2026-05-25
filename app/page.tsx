@@ -127,7 +127,34 @@ export default function Home() {
 
           {/* Uploader */}
           <ImageUploader onImageSelect={handleImageSelect} isLoading={isLoading} />
-
+       {(result || imageUrl || error) && (
+  <button
+    onClick={handleReset}
+    style={{
+      padding: "8px 20px",
+      background: "transparent",
+      border: "2px solid var(--reset-border)",
+      borderRadius: "100px",
+      color: "var(--reset-text-color)",
+      fontSize: "12px",
+      fontWeight: "500",
+      cursor: "pointer",
+      fontFamily: "var(--font-dm)",
+      transition: "all 0.2s ease",
+      width: "fit-content",
+    }}
+    onMouseOver={(e) => {
+      e.currentTarget.style.borderColor = "var(--btn-danger-hover-color)";
+      e.currentTarget.style.color = "var(--btn-danger-hover-color)";
+    }}
+    onMouseOut={(e) => {
+      e.currentTarget.style.borderColor = "var(--reset-border)";
+      e.currentTarget.style.color = "var(--reset-text-color)";
+    }}
+  >
+    ✕ Reset
+  </button>
+)}
           {/* Error */}
           {error && (
             <div style={{
