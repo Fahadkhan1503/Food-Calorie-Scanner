@@ -253,7 +253,7 @@ export default function Home() {
                   width: "100%",
                   padding: "14px",
                   background: "transparent",
-                  border: "1px solid var(--border)",
+                  border: "2px solid var(--border2)",
                   borderRadius: "8px",
                   color: "var(--text-muted)",
                   fontSize: "14px",
@@ -266,7 +266,7 @@ export default function Home() {
                   e.currentTarget.style.color = "var(--accent)";
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.borderColor = "var(--border2)";
                   e.currentTarget.style.color = "var(--text-muted)";
                 }}
               >

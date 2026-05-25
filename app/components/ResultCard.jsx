@@ -1,5 +1,5 @@
 "use client";
-
+import { Lightbulb } from "lucide-react";
 const confidenceColor = {
   high: "#c8f135",
   medium: "#f5c518",
@@ -14,7 +14,7 @@ const healthLabel = (score) => {
 };
 
 const macros = (data) => [
-  { label: "Protein", value: data.protein, color: "#c8f135" },
+  { label: "Protein", value: data.protein, color: "#7ed56f" },
   { label: "Carbs", value: data.carbs, color: "#60a5fa" },
   { label: "Fat", value: data.fat, color: "#f97316" },
   { label: "Fiber", value: data.fiber, color: "#a78bfa" },
@@ -167,7 +167,8 @@ export default function ResultCard({ result, imageUrl }) {
       {result.tip && (
         <div className="flex gap-3 px-5 py-4 items-start"
           style={{ borderBottom: "1px solid var(--border)", background: "rgba(200, 241, 53, 0.03)" }}>
-          <span style={{ fontSize: "16px", flexShrink: 0 }}>💡</span>
+          <span style={{ fontSize: "16px", flexShrink: 0 }}><Lightbulb size={16} color="var(--accent)" />
+</span>
           <p style={{ fontSize: "13px", color: "var(--text-muted)", lineHeight: "1.6" }}>
             {result.tip}
           </p>

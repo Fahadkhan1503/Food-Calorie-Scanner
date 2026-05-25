@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { theme } from "./theme";
+import { Sun, Moon } from "lucide-react";
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(true);
@@ -35,7 +36,8 @@ export default function ThemeToggle() {
         gap: "6px",
       }}
     >
-      {dark ? "☀️ Light" : "🌙 Dark"}
+      {dark ? <Sun size={14} /> : <Moon size={14} />}
+      {dark ? "Light" : "Dark"} 
     </button>
   );
 }
