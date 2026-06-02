@@ -119,7 +119,7 @@ export default function Home() {
               fontSize: "14px",
               color: "var(--text-muted)",
               lineHeight: "1.7",
-              maxWidth: "360px",
+              maxWidth: "460px",
             }}>
               Upload or snap a photo of any food and get instant calorie and macro breakdown. Works with desi food too.
             </p>
@@ -279,15 +279,17 @@ export default function Home() {
 
       {/* Footer */}
       <footer style={{
-        textAlign: "center",
-        padding: "20px",
-        fontSize: "11px",
-        color: "var(--text-dim)",
-        letterSpacing: "0.04em",
-        borderTop: "1px solid var(--border)",
-      }}>
-        Powered by Gemini Vision · Built with Next.js
-      </footer>
+  textAlign: "center",
+  padding: "30px 20px 20px 20px",
+  fontSize: "12px",
+  fontFamily: "var(--font-dm)",
+  fontWeight: "500",
+  color: "var(--text)",
+  letterSpacing: "0.04em",
+  borderTop: "1px solid var(--border)",
+}}>
+  Built by <a href="https://github.com/Fahadkhan1503" target="_blank" style={{ color: "var(--accent)", textDecoration: "none" }}>Muhammad Fahad</a> · Powered by Gemini Vision
+</footer>
     </main>
   );
 }
