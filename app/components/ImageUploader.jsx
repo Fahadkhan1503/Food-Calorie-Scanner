@@ -38,7 +38,7 @@ export default function ImageUploader({ onImageSelect, isLoading }) {
         ref={inputRef}
         type="file"
         accept="image/*"
-        capture="environment"
+        // capture="environment"
         onChange={(e) => handleFile(e.target.files[0])}
         style={{ display: "none" }}
       />
