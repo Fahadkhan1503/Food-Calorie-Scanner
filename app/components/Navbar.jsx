@@ -1,9 +1,11 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import ThemeToggle from "../lib/ThemeToggle";
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
+  const isBMI = pathname === "/bmi";
 
   return (
     <nav style={{
@@ -29,7 +31,7 @@ export default function Navbar() {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <button
-          onClick={() => router.push("/bmi")}
+          onClick={() =>router.push(isBMI ? "/" : "/bmi")}
           style={{
             background: "transparent",
             border: "1px solid var(--border)",
@@ -43,7 +45,7 @@ export default function Navbar() {
             transition: "all 0.2s ease",
           }}
         >
-          BMI Calculator
+          {isBMI ? "Calorie Scanner" : "BMI Calculator"}
         </button>
         <ThemeToggle />
       </div>
