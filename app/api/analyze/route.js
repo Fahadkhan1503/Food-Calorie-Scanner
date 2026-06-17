@@ -37,6 +37,9 @@ If you cannot identify food in the image, return:
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash-lite",
+      // config: {
+      //   temperature: 0,
+      // },
       contents: [
         {
           parts: [
