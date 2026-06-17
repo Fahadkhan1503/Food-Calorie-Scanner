@@ -30,25 +30,27 @@ export default function Navbar() {
         }}>CalorieLens</span>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <button
-          onClick={() =>router.push(isBMI ? "/" : "/bmi")}
-          style={{
-            background: "transparent",
-            border: "1px solid var(--border)",
-            borderRadius: "100px",
-            padding: "6px 14px",
-            cursor: "pointer",
-            fontSize: "13px",
-            color: "var(--text)",
-            fontFamily: "var(--font-dm)",
-            fontWeight: "500",
-            transition: "all 0.2s ease",
-          }}
-        >
-          {isBMI ? "Calorie Scanner" : "BMI Calculator"}
-        </button>
-        <ThemeToggle />
-      </div>
+  <button
+  onClick={() => router.push(isBMI ? "/" : "/bmi")}
+  style={{
+    background: "transparent",
+    border: "1px solid var(--border)",
+    borderRadius: "100px",
+    padding: "6px 12px",
+    cursor: "pointer",
+    fontSize: "12px",
+    color: "var(--text)",
+    fontFamily: "var(--font-dm)",
+    fontWeight: "500",
+    transition: "all 0.2s ease",
+    whiteSpace: "nowrap",
+  }}
+>
+  <span className="hidden sm:inline">{isBMI ? "Calorie Scanner" : "BMI Calculator"}</span>
+  <span className="inline sm:hidden">{isBMI ? "Scanner" : "BMI"}</span>
+</button>
+  <ThemeToggle />
+</div>
     </nav>
   );
 }
