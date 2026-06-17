@@ -4,6 +4,7 @@ import Image from "next/image";
 import ImageUploader from "./components/ImageUploader";
 import ResultCard from "./components/ResultCard";
 import ThemeToggle from "./lib/ThemeToggle";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   const [result, setResult] = useState<any>(null);
@@ -41,7 +42,8 @@ export default function Home() {
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
 
       {/* Navbar */}
-      <nav style={{
+      <Navbar />
+      {/* <nav style={{
         borderBottom: "1px solid var(--border)",
         padding: "16px 32px",
         display: "flex",
@@ -63,8 +65,8 @@ export default function Home() {
           }}>CalorieLens</span>
         </div>
         <ThemeToggle />
-      </nav>
-
+      </nav> */}
+  
       {/* Two column layout on desktop, single on mobile */}
       <div style={{
         display: "grid",
