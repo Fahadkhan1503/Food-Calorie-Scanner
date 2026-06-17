@@ -5,11 +5,34 @@ import LoadingSpinner from "./LoadingSpinner";
 export default function ImageUploader({ onImageSelect, isLoading }) {
   const inputRef = useRef(null);
   const [dragOver, setDragOver] = useState(false);
+  const compressImage = (file) => {
+  return new Promise((resolve) => {
+    const canvas = document.createElement("canvas");
+    const img = document.createElement("img");
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const MAX = 800;
+      let w = img.width;
+      let h = img.height;
+      if (w > MAX) { h = (h * MAX) / w; w = MAX; }
+      canvas.width = w;
+      canvas.height = h;
+      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+      canvas.toBlob((blob) => resolve(new File([blob], file.name, { type: "image/jpeg" })), "image/jpeg", 0.7);
+    };
+    img.src = url;
+  });
+};
 
-  const handleFile = (file) => {
-    if (!file || !file.type.startsWith("image/")) return;
-    onImageSelect(file);
-  };
+const handleFile = async (file) => {
+  if (!file || !file.type.startsWith("image/")) return;
+  const compressed = await compressImage(file);
+  onImageSelect(compressed);
+};
+  // const handleFile = (file) => {
+  //   if (!file || !file.type.startsWith("image/")) return;
+  //   onImageSelect(file);
+  // };
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -17,6 +40,7 @@ export default function ImageUploader({ onImageSelect, isLoading }) {
     handleFile(e.dataTransfer.files[0]);
   };
 
+  
   return (
     <div
       onClick={() => !isLoading && inputRef.current.click()}
