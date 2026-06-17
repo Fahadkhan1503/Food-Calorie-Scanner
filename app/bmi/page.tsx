@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Navbar from "../components/Navbar";
 
 export default function BMICalculator() {
   const router = useRouter();
@@ -38,48 +39,7 @@ export default function BMICalculator() {
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
 
       {/* Navbar */}
-      <nav style={{
-        borderBottom: "1px solid var(--border)",
-        padding: "16px 32px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        position: "sticky",
-        top: 0,
-        background: "var(--bg)",
-        zIndex: 10,
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "20px", color: "var(--accent)" }}>◎</span>
-          <span style={{
-            fontFamily: "var(--font-syne)",
-            fontSize: "18px",
-            fontWeight: "800",
-            color: "var(--text)",
-            letterSpacing: "-0.5px",
-          }}>CalorieLens</span>
-        </div>
-        <button
-          onClick={() => router.push("/")}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            background: "transparent",
-            border: "1px solid var(--border)",
-            borderRadius: "100px",
-            padding: "6px 14px",
-            cursor: "pointer",
-            fontSize: "13px",
-            color: "var(--text)",
-            fontFamily: "var(--font-dm)",
-            transition: "all 0.2s ease",
-          }}
-        >
-          <ArrowLeft size={14} />
-          Back
-        </button>
-      </nav>
+        <Navbar />
 
       <div style={{
         maxWidth: "480px",
