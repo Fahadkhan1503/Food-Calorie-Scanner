@@ -43,29 +43,7 @@ export default function Home() {
 
       {/* Navbar */}
       <Navbar />
-      {/* <nav style={{
-        borderBottom: "1px solid var(--border)",
-        padding: "16px 32px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        position: "sticky",
-        top: 0,
-        background: "var(--bg)",
-        zIndex: 10,
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "20px", color: "var(--accent)" }}>◎</span>
-          <span style={{
-            fontFamily: "var(--font-syne)",
-            fontSize: "18px",
-            fontWeight: "700",
-            color: "var(--text)",
-            letterSpacing: "-0.5px",
-          }}>CalorieLens</span>
-        </div>
-        <ThemeToggle />
-      </nav> */}
+  
   
       {/* Two column layout on desktop, single on mobile */}
       <div style={{
