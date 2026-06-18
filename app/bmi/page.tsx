@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
+import Image from "next/image";
 
 export default function BMICalculator() {
   const router = useRouter();
@@ -222,11 +223,24 @@ export default function BMICalculator() {
         justifyContent: "center",
         height: "100%",
         gap: "16px",
-        opacity: 0.4,
+        // opacity: 0.4,
       }}
         className="max-md:hidden"
       >
-        <div style={{ fontSize: "64px" }}>⚖️</div>
+        
+         <Image
+        src="/bmi-image.png"
+        alt="Food illustration"
+        width={400}
+        height={320}
+        style={{
+        objectFit: "cover",
+        width: "100%",
+        height: "320px",
+        borderRadius: "16px",
+        // opacity: 0.9,
+        }}
+        />
         <p style={{
           fontFamily: "var(--font-syne)",
           fontSize: "16px",
