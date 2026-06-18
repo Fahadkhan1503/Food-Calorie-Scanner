@@ -46,7 +46,7 @@ export default function BMICalculator() {
   gridTemplateColumns: "1fr 1fr",
   minHeight: "calc(100vh - 57px)",
 }}
-  className="max-md:!grid-cols-1"
+  className="max-md:grid-cols-1!"
 >
   {/* LEFT -- title + form */}
   <div style={{
