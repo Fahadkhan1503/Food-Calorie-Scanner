@@ -253,7 +253,9 @@ export default function BMICalculator() {
     )}
 
     {result && (
-      <div style={{
+      <div
+        className="max-md:p-4!" 
+        style={{
         background: "var(--bg)",
         border: `1px solid ${result.color}`,
         borderRadius: "16px",
@@ -264,7 +266,9 @@ export default function BMICalculator() {
         <p style={{ fontSize: "12px", color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "8px" }}>
           Your BMI
         </p>
-        <div style={{
+        <div
+          className="max-md:text-6xl!" 
+          style={{
           fontFamily: "var(--font-syne)",
           fontSize: "80px",
           fontWeight: "800",

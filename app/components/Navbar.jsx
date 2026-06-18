@@ -29,7 +29,7 @@ export default function Navbar() {
           letterSpacing: "-0.5px",
         }}>CalorieLens</span>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "8 px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
   <button
   onClick={() => router.push(isBMI ? "/" : "/bmi")}
   style={{
