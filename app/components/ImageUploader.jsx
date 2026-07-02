@@ -95,7 +95,7 @@ const handleFile = async (file) => {
 
           <span style={{
             fontSize: "11px",
-            color: "var(--text-dim)",
+            color: "var(--accent)",
             background: "var(--surface2)",
             border: "1px solid var(--border)",
             padding: "4px 12px",
