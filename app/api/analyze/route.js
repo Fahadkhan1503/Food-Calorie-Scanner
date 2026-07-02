@@ -36,7 +36,8 @@ If you cannot identify food in the image, return:
 {"error": "No food detected in image"}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-lite",
+      model:  "gemini-3.5-flash",
+      // model: "gemini-2.5-flash-lite",
       // config: {
       //   temperature: 0,
       // },
