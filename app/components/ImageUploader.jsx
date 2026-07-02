@@ -88,7 +88,7 @@ export default function ImageUploader({ onImageSelect, isLoading }) {
             </p>
             <span style={{
               fontSize: "11px",
-              color: "var(--text-dim)",
+              color: "var(--accent)",
               background: "var(--surface2)",
               border: "1px solid var(--border)",
               padding: "4px 12px",
