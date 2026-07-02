@@ -178,7 +178,8 @@ export default function ResultCard({ result, imageUrl }) {
       {/* Disclaimer */}
       <p style={{
         fontSize: "11px",
-        color: "var(--text-dim)",
+        color: "var(--accent)",
+        // color: "var(--text-dim)",
         padding: "12px 20px",
         textAlign: "center",
       }}>
